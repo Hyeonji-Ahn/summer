@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
+import Layout from "../../components/layout"
 
 const Write: NextPage = () => {
   return (
+    <Layout title="Community Post" canGoBack>
     <form className="px-4 py-10">
       <textarea
         className="mt-1 hover:border-orange-500 transition appearance-none w-full px-3 py-2 border-gray-200 rounded-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 "
@@ -12,6 +14,7 @@ const Write: NextPage = () => {
          Submit
       </button>
     </form>
+    </Layout>
   );
 };
 
