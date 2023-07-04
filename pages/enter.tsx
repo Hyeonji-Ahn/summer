@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { cls } from "../libs/utils";
+import Button from "../components/button";
+import Input from "../components/input";
+import type { NextPage } from "next";
 
-export default function Enter() {
+const Enter: NextPage = () => {
   const [method, setMethod] = useState<"email" | "phone">("email");
   const onEmailClick = () => setMethod("email");
   const onPhoneClick = () => setMethod("phone");
@@ -16,26 +19,23 @@ export default function Enter() {
             <button className={cls("transition border-b-2 pb-4 font-medium", method === "phone" ? "border-b-2 border-orange-500 text-orange-500" : "border-transparent  text-gray-500")} onClick={onPhoneClick}>Phone Number</button>
           </div>
         </div>
-        <form className="flex flex-col mt-8">
-          <label htmlFor="input" className="text-sm font-medium text-gray-700">
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
-          <div className="mt-2">
-            {method === "email" ? 
-                <input type="email" id="input" className="hover:border-orange-500 transition appearance-none w-full px-3 py-2 border-gray-200 rounded-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-                 required /> : null}
-            {method === "phone" ? (
-              <div className="flex rounded-md shadow-md  ">
-                <span className="flex items-center justify-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 select-none text-sm">+82</span>
-                <input id="input" className="hover:border-orange-500 transition appearance-none w-full px-3 py-2 border-gray-200 rounded-r-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500" type="number" required />
-              </div>
-            ) : null}
-          </div>
-          <button className="mt-4 focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition bg-orange-500 hover:bg-orange-600 py-2 px-4 border-transparent rounded-md shadow-md font-medium text-white">
-            {method === "email" ? "Get login link" : null}
-            {method === "phone" ? "Get one-time password" : null}
-          </button>
+        <form className="flex flex-col mt-8 space-y-4">
+          {method === "email" ? (
+            <Input name="email" label="Email address" type="email" required />
+          ) : null}
+          {method === "phone" ? (
+            <Input
+              name="phone"
+              label="Phone number"
+              type="number"
+              kind="phone"
+              required
+            />
+          ) : null}
+          {method === "email" ? <Button text={"Get login link"} /> : null}
+          {method === "phone" ? (
+            <Button text={"Get one-time password"} />
+          ) : null}
         </form>
         <div className="mt-6">
           <div className="relative">

@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Layout from "../../components/layout"
+import TextArea from "../../components/textarea";
 
 const CommunityPostDetail: NextPage = () => {
   return (
@@ -11,7 +12,7 @@ const CommunityPostDetail: NextPage = () => {
       <div className="flex mb-3 px-4 cursor-pointer pb-3  border-b items-center space-x-3">
         <div className="w-10 h-10 rounded-full bg-slate-300" />
         <div>
-          <p className="text-sm font-medium text-gray-700">Steve Jebs</p>
+          <p className="text-sm font-medium">Steve Jebs</p>
           <p className="text-xs font-medium text-gray-500">
             View profile &rarr;
           </p>
@@ -74,10 +75,11 @@ const CommunityPostDetail: NextPage = () => {
         </div>
       </div>
       <div className="px-4">
-        <textarea
-          className="mt-1 hover:border-orange-500 transition appearance-none w-full px-3 py-2 border-gray-200 rounded-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"rows={4}
-          placeholder="Answer this question!"
-        />
+        <TextArea
+            name="description"
+            placeholder="Answer this question!"
+            required
+          />
         <button className="transition mt-2 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none ">
           Reply
         </button>
